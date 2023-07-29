@@ -1,7 +1,6 @@
 on:
   push:
     branches: ['main']
-    paths: ['src/**', '.github/workflows/publish.yml']
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
