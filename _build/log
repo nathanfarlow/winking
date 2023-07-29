@@ -3,7 +3,7 @@
 # Shared cache: disabled
 # Workspace root: /home/nathan/git/sandwich
 # Auto-detected concurrency: 16
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_1b07b8_output
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_8a6173_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -149,15 +149,4 @@ $ /usr/bin/ocamlc.opt -config > /tmp/dune_1b07b8_output
 #      ; windows_unicode = false
 #      }
 #  }
-# Promoting "_build/default/sandwich.opam" to "sandwich.opam"
-$ (cd _build/default && /usr/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I lib/.sandwich.objs/byte -no-alias-deps -opaque -o lib/.sandwich.objs/byte/sandwich.cmo -c -impl lib/sandwich.ml-gen)
-$ (cd _build/default && /usr/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I test/.sandwich.eobjs/byte -no-alias-deps -opaque -o test/.sandwich.eobjs/byte/dune__exe__Sandwich.cmi -c -intf test/sandwich.mli)
-$ (cd _build/default && /usr/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/sandwich.cma lib/.sandwich.objs/byte/sandwich.cmo)
-$ (cd _build/default && /usr/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I bin/.main.eobjs/byte -I lib/.sandwich.objs/byte -no-alias-deps -opaque -o bin/.main.eobjs/byte/dune__exe__Main.cmi -c -intf bin/main.mli)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I lib/.sandwich.objs/byte -I lib/.sandwich.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o lib/.sandwich.objs/native/sandwich.cmx -c -impl lib/sandwich.ml-gen)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I test/.sandwich.eobjs/byte -I test/.sandwich.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o test/.sandwich.eobjs/native/dune__exe__Sandwich.cmx -c -impl test/sandwich.ml)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I bin/.main.eobjs/byte -I bin/.main.eobjs/native -I lib/.sandwich.objs/byte -I lib/.sandwich.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.main.eobjs/native/dune__exe__Main.cmx -c -impl bin/main.ml)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/sandwich.cmxa lib/.sandwich.objs/native/sandwich.cmx)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/sandwich.exe test/.sandwich.eobjs/native/dune__exe__Sandwich.cmx)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I lib -o lib/sandwich.cmxs lib/sandwich.cmxa)
-$ (cd _build/default && /usr/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/main.exe lib/sandwich.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
+$ /home/nathan/.opam/default/bin/js_of_ocaml --version > /tmp/dune_cdbafd_output

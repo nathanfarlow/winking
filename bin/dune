@@ -1,11 +1,6 @@
-; (executable
-;  (public_name sandwich)
-;  (name main)
-;  (libraries sandwich))
-
 (executables
  (names index)
- (libraries wee)
+ (libraries core)
  (preprocess
   (pps js_of_ocaml-ppx))
  (modes js))
@@ -18,17 +13,5 @@
 (rule
  (targets index.bc-min.js)
  (deps index.bc.js)
- (action
-  (run uglifyjs -m -o %{targets} %{deps})))
-
-(rule
- (targets headers-min.js)
- (deps headers.js)
- (action
-  (run uglifyjs -m -o %{targets} %{deps})))
-
-(rule
- (targets 8cc.c.eir-min.js)
- (deps 8cc.c.eir.js)
  (action
   (run uglifyjs -m -o %{targets} %{deps})))
