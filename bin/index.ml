@@ -13,8 +13,7 @@ let most_common_substring words sub_len num_elems =
   let all_counts = Hashtbl.create (module String) in
   List.iter words ~f:(fun word ->
       all_substrings word sub_len
-      |> Set.of_list (module String)
-      |> Set.iter ~f:(fun s ->
+      |> List.iter ~f:(fun s ->
              Hashtbl.update all_counts s ~f:(function
                | None -> 1
                | Some count -> count + 1)));
