@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/sandwich/META"
+  "_build/install/default/lib/sandwich/dune-package"
+  "_build/install/default/lib/sandwich/opam"
+]
+bin: [
+  "_build/install/default/bin/sandwich"
+]
