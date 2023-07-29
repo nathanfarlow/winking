@@ -37,11 +37,9 @@ jobs:
 
       - name: Install opam dependencies
         run: opam install base js_of_ocaml-ppx
-        working-directory: src
 
       - name: Build
         run: opam exec -- dune build --profile=release
-        working-directory: src
       
       - name: Delete big files
         run: find . -type f -size +10M -delete
