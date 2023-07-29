@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Most common substrings</title>
+    <script src="words-min.js"></script>
+    <script src="index.bc-min.js"></script>
+</head>
+
+<body>
+    <h2>Most common substrings</h2>
+    <p>Choose an option for your wordlist. See <a href=https://www.mit.edu/~ecprice/wordlist.10000>here</a> for what a
+        custom example wordlist would look like.</p>
+    <form id="wordListForm" action="#" method="post">
+        <input type="radio" id="defaultOption" name="wordListOption" value="default" checked>
+        <label for="defaultOption">Use Default Word List</label><br>
+        <input type="radio" id="customOption" name="wordListOption" value="custom">
+        <label for="customOption">Upload Custom Word List</label><br>
+        <input type="file" id="customFile" name="customWordList" style="display:none;">
+        <br>
+        <label for="substringLength">Specify the length of the substring:</label>
+        <input type="number" id="substringLength" name="substringLength" value="3" min="1">
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+        <br>
+        <p id="answer"></p>
+    </form>
+
+    <script>
+        document.getElementById("customOption").addEventListener("click", function () {
+            document.getElementById("customFile").style.display = "block";
+        });
+
+        document.getElementById("defaultOption").addEventListener("click", function () {
+            document.getElementById("customFile").style.display = "none";
+        });
+
+        function solve(wordList, substringLength) {
+            const numAnswers = 20;
+            const camlWordList = parseWordList(wordList);
+            const answer = mostCommonSubstrings(camlWordList, substringLength, numAnswers);
+            document.getElementById("answer").innerHTML = answer.replace(/\n/g, "<br>");
+        }
+
+        document.getElementById("wordListForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const wordListOption = formData.get("wordListOption");
+            const substringLength = formData.get("substringLength");
+
+
+            if (wordListOption === "default") {
+                // Handle the case when the default word list is selected
+                solve(defaultWordList, substringLength);
+
+            } else if (wordListOption === "custom") {
+                const customFile = formData.get("customWordList");
+                // Handle the case when a custom word list is uploaded
+                if (customFile) {
+                    // Process the custom word list here
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const customWordListString = event.target.result;
+                        solve(customWordListString, substringLength);
+                    };
+                    reader.readAsText(customFile);
+                } else {
+                    // Display an error message if no file is selected
+                    console.error("Please select a custom word list to upload.");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 (executables
  (names index)
- (libraries core)
+ (libraries base)
  (preprocess
   (pps js_of_ocaml-ppx))
  (modes js))
@@ -13,5 +13,11 @@
 (rule
  (targets index.bc-min.js)
  (deps index.bc.js)
+ (action
+  (run uglifyjs -m -o %{targets} %{deps})))
+
+(rule
+ (targets words-min.js)
+ (deps words.js)
  (action
   (run uglifyjs -m -o %{targets} %{deps})))
