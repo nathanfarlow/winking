@@ -10,14 +10,16 @@ let rec all_substrings word len =
   else String.prefix word len :: all_substrings (String.drop_prefix word 1) len
 
 let most_common_substring words sub_len num_elems =
-  let counts = Hashtbl.create (module String) in
+  let all_counts = Hashtbl.create (module String) in
   List.iter words ~f:(fun word ->
-      List.iter (all_substrings word sub_len) ~f:(fun s ->
-          Hashtbl.update counts s ~f:(function
-            | None -> 1
-            | Some count -> count + 1)));
+      all_substrings word sub_len
+      |> Set.of_list (module String)
+      |> Set.iter ~f:(fun s ->
+             Hashtbl.update all_counts s ~f:(function
+               | None -> 1
+               | Some count -> count + 1)));
   List.take
-    (Hashtbl.to_alist counts
+    (Hashtbl.to_alist all_counts
     |> List.sort ~compare:(fun (_, a) (_, b) -> Int.descending a b)
     |> List.map ~f:(fun (s, count) -> Printf.sprintf "%s: %d" s count))
     num_elems
