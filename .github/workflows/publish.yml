@@ -1,0 +1,60 @@
+on:
+  push:
+    branches: ['main']
+    paths: ['src/**', '.github/workflows/publish.yml']
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    name: Publish to Github Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install uglifyjs
+        run: npm install -g uglify-js
+
+      - name: Setup OCaml
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: 4.13.1
+
+      - name: Install opam dependencies
+        run: opam install base js_of_ocaml-ppx
+        working-directory: src
+
+      - name: Build
+        run: opam exec -- dune build --profile=release
+        working-directory: src
+      
+      - name: Delete big files
+        run: find . -type f -size +10M -delete
+        working-directory: src/_build/default/bin
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '_build/default/bin'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
